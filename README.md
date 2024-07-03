@@ -1,6 +1,6 @@
 # Pump fun visualisation
 
-https://observablehq.com/d/1e5a89814ff499d6@127
+https://observablehq.com/d/1e5a89814ff499d6
 
 View this notebook in your browser by running a web server in this folder. For
 example:
