@@ -3,7 +3,7 @@ md`# Pump fun visualisation`
 )}
 
 function _token(){return(
-"ory_at_"
+"ory_at_	"
 )}
 
 function _url(token){return(
@@ -101,9 +101,11 @@ Generators.observe(notify => {
       
       dexTrades.forEach(trade => {
         const buyPrice = trade.Trade.Buy.Price;
+        const Amount=trade.Trade.Buy.Amount;
         data.push({
           time: new Date(),
-          buyPrice: buyPrice // Storing the buy price
+          buyPrice: buyPrice,
+          buyAmount: Amount// Storing the buy price
         });
       });
       notify(data);
@@ -123,8 +125,8 @@ Generators.observe(notify => {
 })
 )}
 
-function _7(Plot,data){return(
-Plot.auto(data, {x: "time", y: "buyPrice", mark: "dot"}).plot()
+function _7(Plot,data,width){return(
+Plot.auto(data, {x: "time", y: "buyPrice", mark: "dot", size: "buyAmount"}).plot({width})
 )}
 
 export default function define(runtime, observer) {
@@ -135,6 +137,6 @@ export default function define(runtime, observer) {
   main.variable(observer("query")).define("query", _query);
   main.variable(observer("conn")).define("conn", ["url"], _conn);
   main.variable(observer("data")).define("data", ["Generators","url","query"], _data);
-  main.variable(observer()).define(["Plot","data"], _7);
+  main.variable(observer()).define(["Plot","data","width"], _7);
   return main;
 }
